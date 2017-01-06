@@ -105,7 +105,7 @@ Write java function to find number of occurances of some number in given array o
 
 
 
-## Unsorted questions
+# Unsorted questions
 ## CS basics, Algorithms & Data structures
 ### Junior
 - Data structures e.g. Stack vs queue
@@ -442,3 +442,16 @@ Write java function to find number of occurances of some number in given array o
 - Click jacking
 - Session token in URL
 - Insecure direct object references
+
+
+
+# Questions from candidate (+ what kind of answer are we looking for)
+### [Source](https://blog.elpassion.com/questions-a-knowledge-seeking-developer-should-ask-at-a-software-house-job-interview-4d09939e9cb2#.xgng295rk)
+> How do your developers learn?
+> Do you allow developers to experiment? 
+> What does it take for one to get promoted to a higher position?
+> Tell me about a time your team did something totally different / innovative
+> Will I be mentoring others and will I be mentored by someone?
+> Are there any further steps available after one becomes senior?
+>Do you offer training allowance & time off for training / attending conferences?
+> What do you do when project starts to go wrong?
