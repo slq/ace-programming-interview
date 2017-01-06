@@ -421,7 +421,7 @@ Write java function to find number of occurances of some number in given array o
 - Statements order during flushing the session (hibernate)
 
 ## JMS
-######### Senior
+###### Senior
 - What is the purpose of JMS
 - Difference between topic and queue
 - What is the basic difference between Publish Subscribe model and P2P model?
@@ -429,13 +429,13 @@ Write java function to find number of occurances of some number in given array o
 - What are the different types of messages available in the JMS API?
 
 ## RESTFul
-######### Regular
+###### Regular
 - What is REST
 - What is Resource
 - Which kind of requests are mapped to  which methods
 
 ## Typical web applications vulnerabilities and prevention
-######### Senior
+###### Senior
 - SQL Injection
 - Cross-site request forgery
 - Reflected Cross-site scripting
