@@ -25,7 +25,7 @@
 ### Difference between Errors and Exceptions
 
 ## Concurrecncy and parallelism
-### How to make local variable thread-safe?
+### How to make local variable thread-safe? (tricky :smile:)
 ### What is _access barrier_?
 ### How to make code thread-safe (without `synchronized` keyword)
 
@@ -80,3 +80,4 @@ So when do you use either one?
 ## Problems to solve
 ### Find missing number
 ### 9-balls 
+### How to make sure JMS message is received
