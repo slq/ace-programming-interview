@@ -105,8 +105,6 @@ Write java function to find number of occurances of some number in given array o
 
 
 
-
-
 ## Unsorted questions
 ## CS basics, Algorithms & Data structures
 ### Junior
@@ -139,7 +137,7 @@ Write java function to find number of occurances of some number in given array o
 - Name OOD principles that you know
 - Do you know SOLID principles (describe one of them)
 
-## Design patternsComments are mandatory!
+## Design patterns
 ### Regular
 - Give an insight into such patterns as Façade/Proxy/Decorator/Strategy/Observer (selectively)
 - Which patterns do you use in a daily basis. Explain their principles
@@ -152,7 +150,7 @@ Write java function to find number of occurances of some number in given array o
 - Describe difference between adapter and decorator
 - Can you please explain "Builder" design pattern?
 
-## Clean CodeComments are mandatory!
+## Clean Code
 ### Regular
 - How do you identify good code? (Based on book "Clean code" by R. C. Martin)
 - Average lines per method & class
@@ -161,7 +159,7 @@ Write java function to find number of occurances of some number in given array o
 ### Senior
 - how package structure can be packed into java project? (package per feature, package per layer?)
 
-## TestingComments are mandatory!
+## Testing
 ### Regular
 - Black box vs white box testing
 - Functional vs nonfunctional testing
@@ -177,7 +175,6 @@ Write java function to find number of occurances of some number in given array o
 ### Senior
 - What features of Junit do you know? @DataPoint @Theory
 - Do you know BDD, how it differs from TDD
-3.25
 
 ## Java basics
 ### Junior
@@ -416,7 +413,7 @@ Write java function to find number of occurances of some number in given array o
 - What are the Collection types in Hibernate ?
 - Caching levels (hibernate/jpa)
 - How to create own user type in hibernate? (hibernate)
-- How is laziness One-To-Many  implemented in hibernate (hibernate) 3
+- How is laziness One-To-Many  implemented in hibernate (hibernate)
 
 ### Expert
 - new features of jpa 2.1 - (jpa)
