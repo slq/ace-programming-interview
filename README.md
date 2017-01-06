@@ -30,13 +30,13 @@
 ### How to make code thread-safe (without `synchronized` keyword)
 
 ## Testing
-## What kind of _test doubles_ do you know?
+### What kind of _test doubles_ do you know?
 - _Dummy objects_ are passed around but never actually used. Usually they are just used to fill parameter lists.
 - _Fake objects_ actually have working implementations, but usually take some shortcut which makes them not suitable for production (an in memory database is a good example).
 - _Stubs_ provide canned answers to calls made during the test, usually not responding at all to anything outside what's programmed in for the test. Stubs may also record information about calls, such as an email gateway stub that remembers the messages it 'sent', or maybe only how many messages it 'sent'.
 - _Mocks_ are what we are talking about here: objects pre-programmed with expectations which form a specification of the calls they are expected to receive.
 
-## Branch vs line code coverage
+### Branch vs line code coverage
 *Line coverage* measures how many statements you took (a statement is usually a line of code, not including comments, conditionals, etc). *Branch coverage* checks if you took the true and false branch for each conditional (if, while, for). You'll have twice as many branches as conditionals.
 
 Consider the example:
@@ -52,7 +52,7 @@ Consider the example:
 ```
 If you call this method with `isCoolUser` set to `true`, you get 100% statement coverage. Sounds good? NOPE, there's going to be a null pointer if you call with `false`. However, you have 50% branch coverage in the first case, so you can see there is something missing in your testing (and often, in your code).
 
-## Mockito author Szczepan Faber
+### Mockito author Szczepan Faber
 
 
 ## JMS
@@ -114,7 +114,7 @@ Write java function to find number of occurances of some number in given array o
 - Complexity of algorithms, big O notation (can be discussed during coding task)
 - Trees, graphs and ways to traverse graph
 
-### Regular
+###### Regular
 - Sorting algorithms
 - Recursion, tail recursion, mutual recursion
 - Binary tree / Self balanced trees (Red-black tree, AVL, Splay)
@@ -122,7 +122,7 @@ Write java function to find number of occurances of some number in given array o
 - Linear-time sorting (count sort)
 - Sorting of linked list
 
-### Senior
+###### Senior
 - Prefix and suffix trees
 - NP-complete algorithms
 - Map/reduce and divide and conquer approach in solving tasks
@@ -131,18 +131,18 @@ Write java function to find number of occurances of some number in given array o
 - What is the difference between static and dynamic typing? Duck typing?
 
 ## OOP
-### Regular
+###### Regular
 - Inheritance vs Composition
 - Coupling & Cohesion
 - Name OOD principles that you know
 - Do you know SOLID principles (describe one of them)
 
 ## Design patterns
-### Regular
+###### Regular
 - Give an insight into such patterns as Façade/Proxy/Decorator/Strategy/Observer (selectively)
 - Which patterns do you use in a daily basis. Explain their principles
 
-### Senior
+###### Senior
 - What major patterns do the Java APIs utilize? Where exactly?
 - Can you please explain “bridge”, "singleton" design pattern?
 - Can you please explain "FlyWeight" design pattern?
@@ -151,16 +151,16 @@ Write java function to find number of occurances of some number in given array o
 - Can you please explain "Builder" design pattern?
 
 ## Clean Code
-### Regular
+###### Regular
 - How do you identify good code? (Based on book "Clean code" by R. C. Martin)
 - Average lines per method & class
 - Is it a problem to have comments in code
 
-### Senior
+###### Senior
 - how package structure can be packed into java project? (package per feature, package per layer?)
 
 ## Testing
-### Regular
+###### Regular
 - Black box vs white box testing
 - Functional vs nonfunctional testing
 - Regression vs retesting
@@ -172,7 +172,7 @@ Write java function to find number of occurances of some number in given array o
 - What is mocking? Have you used any mocking frameworks?
 - What does quality code mean to you?
 
-### Senior
+###### Senior
 - What features of Junit do you know? @DataPoint @Theory
 - Do you know BDD, how it differs from TDD
 
@@ -187,7 +187,7 @@ Write java function to find number of occurances of some number in given array o
 - What different between StringBuffer and StringBuilder
 - Purpose, types and creation of nested classes
 
-### Regular
+###### Regular
 - What does it mean that an object or a class is mutable or immutable
 - How to make class immutable
 - Besides “string” do you know any other immutable classes
@@ -199,7 +199,7 @@ Write java function to find number of occurances of some number in given array o
 - Regular vs. static initialization blocks
 
 ## Memory & GC
-### Regular
+###### Regular
 - How is virtual heap space divided in Java
 - What difference between float and BigDecimal? How they store the data?
 - Java object references
@@ -208,7 +208,7 @@ Write java function to find number of occurances of some number in given array o
 - What are utilities for JVM monitoring? What is Jconsole?
 - How to force GC be executed
 
-### Senior
+###### Senior
 - Garbage collection principles
 - What are memory leaks
 - Are memory leaks a problem in Java
@@ -217,40 +217,40 @@ Write java function to find number of occurances of some number in given array o
 - How would you monitor how GC behaves during program execution
 - Name few GC implementations (Serial, Parallel, ParallelOld, ConcarentMarkAndSweep) describe major differences
 
-### Expert
+###### Expert
 - Memory model in JVM (happens before, atomicity of memory reads and writes)
 - Perm Space vs Metadata space in Java 8
 - What are G1 of C4 garbage collectors
 
 
 ## Exceptions
-### Regular
+###### Regular
 - Checked vs. unchecked exceptions. Why would one use former or later?
 - Difference in Error and UncheckedException
 - Could we have only try and finally without catch
 - Cases when the finally block isn't executed
 
-### Senior
+###### Senior
 - What is exception handling mechanism
 - Java Exceptions API
 - How to avoid catch block
 - What is Multi-Catch     catch (ClassCastException | IOException e) what is compile type of e
 - What is try-with-resources 
 
-### Expert
+###### Expert
 - What are Suppressed exceptions
 - NoClassDefFoundError vs ClassNotFoundException
 
 
 ## Collections
-### Regular
+###### Regular
 - General collection interfaces (Collection, Set, Map, List, Queue, SortedSet, SortedMap)
 - Interfaces extending Collection. Is Map part of Collection interface
 - Difference between ArrayList and LinkedList
 - Difference between Stack and Queue
 - TreeSet vs TreeMap
 
-### Senior
+###### Senior
 - Internal structure of HashMap/Hashtable
 - Requirements for implementation of hashCode to achieve best performance
 - Definition and ways of resolving collisions in hash tables
@@ -259,12 +259,12 @@ Write java function to find number of occurances of some number in given array o
 - Iterator and modification of a List. ConcurentModificationException. Collections with safe iterators (CopyOnWriteArrayList/CopyOnWriteArraySet)
 
 ## Java 5+ Specifics
-### Regular
+###### Regular
 - What is a parameterized or generic type
 - Can we use parameterized types in exception handling
 - What is Autoboxing and what are its advantages/pitfalls
 
-### Senior
+###### Senior
 - What is a wildcard parameterized type
 - Problems Enum type solves (comparing to "public static int" enum pattern)
 - Can we add something to List<?> (PECS principle?)
@@ -274,13 +274,13 @@ Write java function to find number of occurances of some number in given array o
 - What is Lambda expression (Java 8)
 - What are Annotations and which predefined by the language specification does one know (@Deprecated, @Override, @SuppressWarnings)
 
-### Expert
+###### Expert
 - What happens with lambda after compile time?
 - How to create custom annotation? What is retention type?
 
 
 ## Multithreading
-### Regular
+###### Regular
 - Thread vs Runnable, run() vs start()
 - Synchronization of java blocks and methods
 - Explain usage of the couple wait()/notify()
@@ -291,7 +291,7 @@ Write java function to find number of occurances of some number in given array o
 - What does it mean Volatile keyword
 - java.util.concurrent.*, what utils do you know
 
-### Senior
+###### Senior
 - Thread local, what for are they needed
 - Does child thread see the value of parent thread local
 - Starvation/Race condition definition plus example
@@ -302,24 +302,24 @@ Write java function to find number of occurances of some number in given array o
 - RecursiveTask vs RecursiveAction
 - Lock-free operations, how to create lock-free implementation of field reassignment
 
-### Expert
+###### Expert
 - What is Fork-Join
 - What is Phaser (Java 7)
 
 ## XML
-### Regular
+###### Regular
 - DTD vs. XMLSchema
 - What is XPath
 - What is XSLT
 - SAX vs. DOM
 - What is XML Namespace
 
-### Senior
+###### Senior
 - SAX vs StAX
 
 
 ## Java NIO
-### Senior
+###### Senior
 - What is NIO
 - What is Channel
 - What is Buffer
@@ -335,12 +335,12 @@ Write java function to find number of occurances of some number in given array o
 - Out of the box bean scopes (singleton, prototype, request, session, global session)
 - What are the main bean scopes in web container
 
-### Regular
+###### Regular
 - What are the types of Dependency Injection Spring supports
 - Autowiring. Types of autowiring.
 - What are inner beans.
 
-### Senior
+###### Senior
 - What modules does Spring Framework have
 - Describe Test support in Spring (AbstractTransactionalSpringTests)
 - Describe AOP integration in Spring
@@ -361,7 +361,7 @@ Write java function to find number of occurances of some number in given array o
 - What kind of joins do you know?
 - What is the difference between inner join and outer join?
 
-### Regular
+###### Regular
 - Why many indexes are not good for performance
 - What transaction isolation levels do you know?
 - Which of SELECT, UPDATE, DELETE, ADD’s performance is mostly affected by performance of indexes?
@@ -370,7 +370,7 @@ Write java function to find number of occurances of some number in given array o
 - What are normal forms?
 - What are ways to increase performance of database
 
-### Senior
+###### Senior
 - What is difference between SQL and NoSQL?
 - Does every relational database implements SQL standard in the same way?
 - What is a nested subquery?
@@ -380,7 +380,7 @@ Write java function to find number of occurances of some number in given array o
 - Partitioning and methods of partitioning
 
 ## Unix and networking
-### Regular
+###### Regular
 - How to get list of running processes?
 - Hot to get thread dump of running java process (kill -3)
 - Describe grep / tail / less / more
@@ -401,13 +401,13 @@ Write java function to find number of occurances of some number in given array o
 - Describe concept of JPA (ex: EntityManager, EntityManagerFactory, PersistenceContext, PersistenceUnit) - (jpa)
 - Describe annotation: @Temporal/@Transient/@Table/@Version?  - (jpa)
 
-### Regular 
+###### Regular 
 - What do you mean by Named – SQL query and how to invoke it? (hibernate/jpa)
 - What is the difference between sorted and ordered collection in hibernate? (hibernate/jpa?)
 - Difference between get() and load() (hibernate)
 - find() vs getReference()  - (jpa)
 
-### Senior
+###### Senior
 - What are the entity states in Hibernate (hibernate - 3 states/jpa - 4 states (additional removed))
 - Hierarchy-to-tables mapping strategies (hibernate/jpa)
 - What are the Collection types in Hibernate ?
@@ -415,13 +415,13 @@ Write java function to find number of occurances of some number in given array o
 - How to create own user type in hibernate? (hibernate)
 - How is laziness One-To-Many  implemented in hibernate (hibernate)
 
-### Expert
+###### Expert
 - new features of jpa 2.1 - (jpa)
 - Describe converters in Jpa  2.1 - (jpa)
 - Statements order during flushing the session (hibernate)
 
 ## JMS
-### Senior
+######### Senior
 - What is the purpose of JMS
 - Difference between topic and queue
 - What is the basic difference between Publish Subscribe model and P2P model?
@@ -429,13 +429,13 @@ Write java function to find number of occurances of some number in given array o
 - What are the different types of messages available in the JMS API?
 
 ## RESTFul
-### Regular
+######### Regular
 - What is REST
 - What is Resource
 - Which kind of requests are mapped to  which methods
 
 ## Typical web applications vulnerabilities and prevention
-### Senior
+######### Senior
 - SQL Injection
 - Cross-site request forgery
 - Reflected Cross-site scripting
@@ -446,12 +446,58 @@ Write java function to find number of occurances of some number in given array o
 
 
 # Questions from candidate (+ what kind of answer are we looking for)
-### [Source](https://blog.elpassion.com/questions-a-knowledge-seeking-developer-should-ask-at-a-software-house-job-interview-4d09939e9cb2#.xgng295rk)
-> How do your developers learn?
-> Do you allow developers to experiment? 
-> What does it take for one to get promoted to a higher position?
-> Tell me about a time your team did something totally different / innovative
-> Will I be mentoring others and will I be mentored by someone?
-> Are there any further steps available after one becomes senior?
->Do you offer training allowance & time off for training / attending conferences?
-> What do you do when project starts to go wrong?
+###### [Source](https://blog.elpassion.com/questions-a-knowledge-seeking-developer-should-ask-at-a-software-house-job-interview-4d09939e9cb2#.xgng295rk)
+
+###### How do your developers learn?
+- Code reviews
+- Refactoring sprints
+- Pair programming
+- Dojos
+- Retreats
+- Code roasts
+- Knowledge sharing sessions
+- Internal talks
+- Internal / External Hackathons
+- Safari books / Coursera sponsored trainings
+
+###### Do you allow developers to experiment? 
+- Free choice of technology
+- Encouraged to try new things
+- Time for exploring unchartered territories
+
+###### What does it take for one to get promoted to a higher position?
+- Carrer path for developers
+- 1-on-1s
+- Feedback
+- Peer review
+- Evaluation at least once in 6 months
+- Know what sills are expected at different carrer levels
+
+###### Tell me about a time your team did something totally different / innovative
+- We pay in Bitcoins
+- We had bot wars Hackathon
+- We had no-mouse week
+- We tried X and failed
+
+###### Will I be mentoring others and will I be mentored by someone?
+- Both seniors and juniors on team
+- Team has tech-mentor
+- Pair programming
+- Code reviews
+
+###### Are there any further steps available after one becomes senior?
+- Plan for Seniors'growth
+- We are happy to shape your future
+- Continuous learning
+- Mentorship
+
+###### Do you offer training allowance & time off for training / attending conferences?
+- Sponsored conference outings
+- Buy learning materials
+- We talk at conferences a lot
+- Training allowance is offered
+
+###### What do you do when project starts to go wrong?
+- You fail and learn
+- Look at what went wrong and do it right next time
+- We do retro for both success and failures
