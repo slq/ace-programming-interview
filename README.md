@@ -81,3 +81,24 @@ So when do you use either one?
 ### Find missing number
 ### 9-balls 
 ### How to make sure JMS message is received
+
+### Number of pairs in Array
+write java function which calculates number of pairs in array. Pair is when two nubers added together, result is zero.
+
+### Traverse tree
+Write java fuction to find some element in binary search tree
+
+### Reverse List
+Write java function to reverse elements in one directional linked list
+
+### Merge sorted arrays
+Having two separate sorted arrays, write java function merging these arrays in single sorted array without sorting it 
+
+### Find duplicate number in array
+An array contains numbers. Exactly one number is duplicated in the array. Write java function to find this duplicate
+
+### Find number in matrix
+In a 2D matrix, every row ins increasingly sorted from left to rifht. Last number in each row is not greater then first number in next row. Write java function to check if there is a number in the matrix
+
+### Find number of occurances in array
+Write java function to find number of occurances of some number in given array of numbers
