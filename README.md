@@ -1,17 +1,55 @@
 # Ace the Programming Interview
 
-## Java EE components
-+ Web components
-    * Java Servlet
-    * JavaServer Faces (JSF)
-    * JavaServer Pages (JSP)
+## Java EE
++ Implementations
+    * Oracle Glassfish reference implementation
+    * RedHat
+    * IBM
 
-+ Business componenets
-    * Enterprise JavaBeans (EJB)
++ Components
+    * Web components
+        - Java Servlet
+        - JavaServer Pages (JSP)
+        - JavaServer Faces (JSF)
+        
+    * Business components
+        - Enterprise JavaBeans (EJB)
 
 ## Database replication and sharding
 
+## Scale-up vs scale-out (database example)
+- *Scale-up* - when you buy more RAM or table space
+- *Scale-out* - when you buy more instances and replicate them
+
+## Coupling and cohesion
+- Coupling
+    + We can define it as the degree to which a class, method or any other software entity, is directly linked to another. This degree of coupling can also be seen as a degree of dependence.
+    + *Example:* when we want to use a class that is tightly bound (has a high coupling) to one or more classes, we will end up using or modifying parts of these classes for which we are dependent.
+    
+- Cohesion
+    + Cohesion is the measure in which two or more parts of a system work together to obtain better results than each part individually.
+    + *Example:* Han Solo and Chewbacca aboard the Millennium Falcon.
+
 ## SOLID
+- First defined by Rober C. Martin in early 2000s
+- Gathered and named (SOLID) by Michael Feathers
+- Based on two basic concepts: *coupling* and *cohesion*
+- Principles
+    + Single Responsibility Principle (SRP)
+        * A class should have only one reason to change
+        * This principle means that a class must have only one responsibility and do only the task for which it has been designed.
+        * Otherwise, if our class assumes more than one responsibility we will have a high coupling causing our code to be fragile with any changes.
+            
+    + Open Closed Principle (OCP)
+        * Software entities (classes, modules, functions, etc.) should be open for extension, but closed for modification
+        * According to this principle, a software entity must be easily extensible with new features without having to modify its existing code in use.
+            - open for extension: new behaviour can be added to satisfy the new requirements.
+            - close for modification: to extending the new behaviour are not required modify the existing code.
+        * If we apply this principle we will get extensible systems that will be less prone to errors whenever the requirements are changed. We can use the abstraction and polymorphism to help us apply this principle.
+        
+    + Liskov Substitution Principle 
+    + Interface Segregation Principle 
+    + Dependency Inversion Principle (DI)
 
 ## Spring and proxies
 ### Spring transactions
@@ -58,6 +96,92 @@ If you call this method with `isCoolUser` set to `true`, you get 100% statement 
 ## JMS
 ### JMS Publish-Subscriber using REST services
 
+## Garbage collector
+### What is the difference between `real`, `user` and `sys` times in garbage collection log file
+[Origin](https://blog.gceasy.io/2016/04/06/gc-logging-user-sys-real-which-time-to-use/)
+
+**Real** is wall clock time – time from start to finish of the call. This is all elapsed time including time slices used by other processes and time the process spends blocked (for example if it is waiting for I/O to complete).
+
+**User** is the amount of CPU time spent in user-mode code (outside the kernel) within the process. This is only actual CPU time used in executing the process. Other processes and time the process spends blocked do not count towards this figure.
+
+**Sys** is the amount of CPU time spent in the kernel within the process. This means executing CPU time spent in system calls within the kernel, as opposed to library code, which is still running in user-space. Like ‘user’, this is only CPU time used by the process.
+
+**User**+**Sys** will tell you how much actual CPU time your process used. Note that this is across all CPUs, so if the process has multiple threads, it could potentially exceed the wall clock time reported by Real.
+
+**Example 1:**
+```
+[Times: user=11.53 sys=1.38, real=1.03 secs]
+```
+In this example: `user` + `sys` is much greater than `real` time. That’s because this log time is collected from the JVM, where multiple GC threads are configured on a multi-core/multi-processors server. As multiple threads execute GC in parallel, the workload is shared amongst these threads. Thus actual clock time (`real`) is much less than total CPU time (`user` + `sys`).
+
+**Example 2:**
+```
+[Times: user=0.09 sys=0.00, real=0.09 secs]
+```
+Above is an example of GC Times collected from a Serial Garbage Collector. As Serial Garbage collector always uses a single thread only, real time is equal to the sum of user and system times.
+
+### What causes long GC pauses
+##### Too high object creation reate
+Optimizing the application for create fewer object is good strategy. Use tools like `JProfiler`, `YourKit`, `JVisualVM`
+
+##### Young generation too small 
+[Origin.](https://dzone.com/articles/how-to-reduce-long-gc-pause)
+
+When the young generation is undersized, objects will be prematurely promoted to the old generation. Collecting garbage from the old generation takes more time than collecting it from the young generation. Thus, increasing the young generation size has the potential to reduce long GC pauses. The young generation's size can be increased by setting one of the two JVM arguments
+- `-Xmn` specifies the size of the young generation.
+- `-XX:NewRatio` Specifies the size of the young generation relative to the old generation. For example, setting `-XX:NewRatio=2` means that the ratio between the old and young generation is `1:2`. The young generation will be half the size of the overall heap. So, if the heap size is 2 GB, then the young generation size would be 1 GB.
+
+##### Change GC alogrithm
+GC algorithm has a major influence on the GC pause time. Tune GC settings to obtain optimal GC pause time. If you don’t have a lot of GC expertise, then I would recommend using the G1 GC algorithm because of its auto-tuning capability. In G1 GC, you can set the GC pause time goal using the system property `-XX:MaxGCPauseMillis.` 
+
+**Example:** `-XX:MaxGCPauseMillis=200`, the maximum GC pause time is set to 200 milliseconds. This is a soft goal, which JVM will try it’s best to meet it
+
+##### Process Swapping
+Sometimes due to a lack of memory (RAM), the operating system could be swapping your application from memory. Swapping is very expensive, as it requires disk accesses, which is much slower compared to physical memory access. In my humble opinion, no serious application in a production environment should be swapping. When the process swaps, GC will take a long time to complete.
+
+[Get all processes that are being swapped](http://stackoverflow.com/questions/479953/how-to-find-out-which-processes-are-swapping-in-linux)
+
+If you find your processes are swapping, then do one of the following:
+- Allocate more RAM to the service
+- Reduce number of processes running on the server to free up memory
+- Reduce the heap size of your application
+
+
+##### Tune number of GC threads
+For every GC event reported in the GC log, user, sys, and real times are printed. 
+
+**Example:** `[Times: user=25.56 sys=0.35, real=20.48 secs]`
+
+To know the difference between each of these times, please [read this article](https://blog.gceasy.io/2016/04/06/gc-logging-user-sys-real-which-time-to-use/)If, in the GC events, you consistently notice that ‘real’ time isn’t significantly less than the ‘user’ time, then it might be indicating that there aren’t enough GC threads. Consider increasing the GC thread count. Suppose `user` time is 25 seconds and you have configured the GC thread count to be 5, then the real time should be close to 5 seconds (because `25 seconds/5 threads = 5 seconds`).
+
+**WARNING:** Adding too many GC threads will consume a lot of CPU and take away resources from your application. Thus you need to conduct thorough testing before increasing the GC thread count.
+
+##### Background IO Traffic
+If there is heavy file system I/O activity (i.e. lot of reads and writes are happening), it can also cause long GC pauses. This heavy file system I/O activity may not be caused by your application. Maybe it is caused by another process that is running on the same server. Still it can cause your application to suffer from long GC pauses. Here is a brilliant [article from LinkedIn Engineers](https://engineering.linkedin.com/blog/2016/02/eliminating-large-jvm-gc-pauses-caused-by-background-io-traffic) that walks through this problem in detail.
+
+When there is heavy I/O activity, you will notice the `real` time to be significantly higher than `user` time. 
+
+**Example:** `[Times: user=0.20 sys=0.01, real=18.45 secs]` When this happens, here are some potential solutions to solve it:
+- If high I/O activity is caused by your application, then optimize it.
+- Eliminate the processes that are causing high I/O activity on the server.
+- Move your application to a different server where there is less I/O activity.
+
+##### Direct `System.gc()` calls
+When `System.gc()` or `Runtime.getRuntime().gc()` method calls are invoked, it will cause stop-the-world full GCs. During stop-the-world full GCs, the entire JVM is frozen (i.e. No user activity will be performed during this period). `System.gc()` calls are made from one of the following sources:
+- Your own developers might be explicitly calling the `System.gc()` method.
+- It could be third-party libraries, frameworks, or sometimes even application servers that you use. Any of those could be invoking the `System.gc()` method.
+- It could be triggered from external tools (like VisualVM) through the use of JMX.
+- If your application is using RMI, then RMI invokes `System.gc()` on a periodic interval. This interval can be configured using the following system properties: 
+    + `-Dsun.rmi.dgc.server.gcInterval=n`
+    + `-Dsun.rmi.dgc.client.gcInterval=n`
+
+Evaluate whether it’s absolutely necessary to explicitly invoke `System.gc()`. If there is no need for it, then please remove it. On the other hand, you can forcefully disable the `System.gc()` calls by passing the JVM argument: `-XX:+DisableExplicitGC`. For complete details on `System.gc()` problems and solution [refer to this article](https://blog.gceasy.io/2016/11/22/system-gc/)
+
+
+
+
+
+
 ## Git merge vs rebase
 - Merge takes all the changes in one branch and merges them into another branch in one commit.
 - Rebase says I want the point at which I branched to move to a new starting point
@@ -82,6 +206,10 @@ So when do you use either one?
 ### 9-balls 
 ### How to make sure JMS message is received
 
+
+
+
+## Coding tasks
 ### Number of pairs in Array
 write java function which calculates number of pairs in array. Pair is when two nubers added together, result is zero.
 
